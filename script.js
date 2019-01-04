@@ -1,9 +1,15 @@
 "use strict";
 
-let corpus = ["earthpea","airfield","aabba","lol","the"];
+let corpus = ["earthpea","airfield","aabba","lol","the", "yyzzy"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
 console.log(sortedCorpus);
+
+function randomInt(bottom, top)
+{
+	let result = Math.floor(Math.random() * (top - bottom) + bottom);
+	return result;
+}
 
 function makeSortedCorpus(corpus)
 {
@@ -24,33 +30,45 @@ function makeSortedCorpus(corpus)
 	return sorted;
 }
 
-function getSuggestions(curr, patt)
+function getSuggestions(curr, patt, corpus)
 {
-	let txt = patt.split(" ").join("");
-	let bin = cipherToBin(txt);
-	let words = curr.split(" ");
-	let remaining = bin.substring(txt.length,bin.length);
-	if(curr.charAt(curr.length - 1) == " ")
+	let currWords = curr.split(" ");
+	let currTxt = currWords.join("");
+	let currBin = cipherToBin(currTxt);
+	
+	let remaining = patt.substring(currTxt.length,patt.length);
+	
+	if(curr == "" || curr.charAt(curr.length - 1) == " ")
 	{
 		let currWord = "";
-		return getFullSuggest(remaining);
+		return getFullSuggest(remaining, corpus);
 	}
 	else
 	{
 		let currWord = words[words.length - 1];
-		return getPartialSuggest(currWord, remaining);
+		return getPartialSuggest(currWord, remaining, corpus);
 	}
 }
 
-// here is stuff I haven't written yet!!!!
-function getPartialSuggest(word, patt)
+function getPartialSuggest(word, patt, corpus)
 {
 	return "oof";
 }
 
-function getFullSuggest(patt)
+function getFullSuggest(patt, corpus)
 {
-	return "oof";
+	let limit = patt.length;
+	let result = [];
+	while(limit > 0)
+	{
+		let currPatt = patt.substring(0,limit);
+		if(currPatt in corpus)
+		{
+			result = result.concat(corpus[currPatt]);
+		}
+		limit--;
+	}
+	return result;
 	
 }
 
@@ -73,4 +91,4 @@ function cipherToBin(txt) {
 	return r;
 }
 
-getSuggestions("eart","0011110000110011");
+console.log(getSuggestions("earthpea ","0011110000110011", sortedCorpus));
