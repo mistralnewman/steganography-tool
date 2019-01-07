@@ -64,11 +64,6 @@ function getSuggestions(curr, patt, corpus)
 	}
 }
 
-function easyGetSuggestions(value)
-{
-	getSuggestions(value, "110", sortedCorpus);
-}
-
 function getPartialSuggest(word, patt, corpus)
 {
 	return "oof";
