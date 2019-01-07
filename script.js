@@ -16,18 +16,18 @@ function randomInt(bottom, top)
 
 function makeSortedCorpus(corpus)
 {
-	let sorted = {};
+	let sorted = new Map();
 	for(var i = 0; i < corpus.length; i++)
 	{
 		let word = corpus[i];
 		let binWord = cipherToBin(word);
-		if(binWord in sorted)
+		if(sorted.has(binWord))
 		{
-			sorted[binWord].push(word);
+			sorted.set(binWord, sorted.get(binWord).concat(word));
 		}
 		else
 		{
-			sorted[binWord] = [word];
+			sorted.set(binWord, [word]);
 		}
 	}
 	return sorted;
@@ -66,7 +66,7 @@ function getSuggestions(curr, patt, corpus)
 
 function getPartialSuggest(word, patt, corpus)
 {
-	return "oof";
+	let i = corpus.size;
 }
 
 function getFullSuggest(patt, corpus)
@@ -76,9 +76,9 @@ function getFullSuggest(patt, corpus)
 	while(limit > 0)
 	{
 		let currPatt = patt.substring(0,limit);
-		if(currPatt in corpus)
+		if(corpus.has(currPatt))
 		{
-			result = result.concat(corpus[currPatt]);
+			result = result.concat(corpus.get(currPatt));
 		}
 		limit--;
 	}
