@@ -45,9 +45,14 @@ function getSuggestions(curr, patt, corpus)
 	}
 	else
 	{
-		let currWord = words[words.length - 1];
+		let currWord = currWords[currWords.length - 1];
 		return getPartialSuggest(currWord, remaining, corpus);
 	}
+}
+
+function easyGetSuggestions(value)
+{
+	getSuggestions(value, "110", sortedCorpus);
 }
 
 function getPartialSuggest(word, patt, corpus)
@@ -74,7 +79,8 @@ function getFullSuggest(patt, corpus)
 
 
 // input to this function should be just letters! take out the spaces I am begging you!
-function cipherToBin(txt) {
+function cipherToBin(txt)
+{
 	let r = "";
 	let vowels = ["a","e","i","o","u","y"]
 	for (var i = 0; i < txt.length; i++)

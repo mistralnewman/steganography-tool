@@ -2,6 +2,17 @@
 <html>
 <body>
 	<script src="script.js"></script>
-	<input type="text" onchange="alert(getSuggestions(this.value,'0011110000110011', sortedCorpus))">
+	<script src="output.js"></script>
+	Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onchange="updatePattern(this.value)">
+	<script>
+		document.body.appendChild(patternDiv);
+	</script>
+	<script>
+		let patternElem = document.getElementById("pattern");
+	</script>
+	Text: <input id="text" type="text" onchange="updateOutput(getSuggestions(this.value, patternElem.value, sortedCorpus))">
+	<script>
+		document.body.appendChild(outputDiv);
+	</script>
 </body>
 </html>
