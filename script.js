@@ -1,9 +1,12 @@
 "use strict";
 
-let corpus = ["earthpea","airfield","aabba","lol","the", "yyzzy"];
+let corpus = ["earthpea","airfield","aabba","lol","the", "yyzzy","them","thesaurus","they","then","theniorus"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
 console.log(sortedCorpus);
+
+let antiSortedCorpus = makeAntiSortedCorpus(corpus);
+console.log(antiSortedCorpus);
 
 function randomInt(bottom, top)
 {
@@ -26,6 +29,17 @@ function makeSortedCorpus(corpus)
 		{
 			sorted[binWord] = [word];
 		}
+	}
+	return sorted;
+}
+
+function makeAntiSortedCorpus(corpus)
+{
+	corpus = corpus.sort();
+	let sorted = new Map();
+	for (let w of corpus)
+	{
+		sorted.set(w, cipherToBin(w));
 	}
 	return sorted;
 }
