@@ -2,17 +2,23 @@
 <html>
 <body>
 	<script src="script.js"></script>
-	<script src="output.js"></script>
-	Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onchange="updatePattern(this.value)">
-	<script>
-		document.body.appendChild(patternDiv);
-	</script>
+	Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">
 	<script>
 		let patternElem = document.getElementById("pattern");
+		let patternDiv = document.createElement("div");
+		document.body.appendChild(patternDiv);
 	</script>
-	Text: <input id="text" type="text" onchange="updateOutput(getSuggestions(this.value, patternElem.value, sortedCorpus))">
+	Text: <input id="text" type="text" onkeyup="updateAllOutput()">
 	<script>
+		let textElem = document.getElementById("text");
+		let outputDiv = document.createElement("div");
 		document.body.appendChild(outputDiv);
+		function updateAllOutput()
+		{
+			outputDiv.innerHTML = getSuggestions(textElem.value, patternElem.value, sortedCorpus);
+			patternDiv.innerHTML = patternElem.value;
+		}
+		updateAllOutput();
 	</script>
 </body>
 </html>
