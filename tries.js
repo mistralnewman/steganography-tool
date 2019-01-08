@@ -20,10 +20,9 @@ function TrieNode(val, bin, ones, zeroes, end)
 	
 	this.get = function(ch)
 	{
-		console.log("get",ch);
 		if(!this.has(ch))
 		{
-			throw "trie does not contain "+ch.charCodeAt(0)+"!";
+			throw "trie does not contain "+ch+"!";
 		}
 		if(cipherToBin(ch) == "0")
 		{
@@ -40,11 +39,10 @@ function TrieNode(val, bin, ones, zeroes, end)
 	{
 		let i = 0;
 		let currNode = this;
-		console.log("currnode", currNode);
 		while(i < w.length)
 		{
-			currNode = currNode.get(w.charAt(i));
 			i++;
+			currNode = currNode.get(w.charAt(i));
 		}
 		return currNode;
 	}
@@ -102,7 +100,6 @@ function getSuggestions2(curr, patt, corp)
 {
 	let currWords = curr.split(" ");
 	let currWord = currWords[currWords.length - 1];
-	console.log(currWord);
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);
 	let remaining = patt.substring(currTxt.length, patt.length);
@@ -114,7 +111,7 @@ function getSuggestions2(curr, patt, corp)
 	{
 		return "Uhhh buddy you messed up";
 	}
-	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
+	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;}));
 }
 
 function getTrieSuggestions(patt, node, f)
