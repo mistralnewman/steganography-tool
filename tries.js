@@ -5,6 +5,36 @@ function TrieNode(val, bin, ones, zeroes, end)
 	this.ones = ones;
 	this.zeroes = zeroes;
 	this.end = end;
+	this.has = function(ch)
+	{
+		if(cipherToBin(ch) == "0")
+		{
+			side = this.zeroes;
+		}
+		else
+		{
+			side = this.ones;
+		}
+		return side.has(ch);
+	}
+	
+	this.get = function(ch)
+	{
+		if(!this.has(ch))
+		{
+			throw "trie does not contain "+ch+"!";
+		}
+		if(cipherToBin(ch) == "0")
+		{
+			side = this.zeroes;
+		}
+		else
+		{
+			side = this.ones;
+		}
+		return side.get(ch);
+	}
+		
 }
 
 let trieCorpus = new TrieNode("start+", null, new Map(), new Map(), false);
@@ -65,7 +95,7 @@ function getSuggestions2(curr, patt, corpus)
 	{
 		return "<strong>NICE</strong>";
 	}
-	if(currBin != remaining)
+	if(currBin != patt.substring(0, currTxt.length))
 	{
 		return "Uhhh buddy you messed up";
 	}
@@ -74,5 +104,9 @@ function getSuggestions2(curr, patt, corpus)
 
 function getTrieSuggestions(word, patt, corpus)
 {
-	return "not yet implemented";
+	let currNode = corpus;
+	/*while(word.length > 1)
+	{
+		if(currNode.
+	return getTrieSuggestionsHelper(patt, currNode, (function(x) { return x; }));*/
 }

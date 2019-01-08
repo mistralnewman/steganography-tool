@@ -2,6 +2,7 @@
 <html>
 <body>
 	<script src="script.js"></script>
+	<script src="tries.js"></script>
 	Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">
 	<script>
 		let patternElem = document.getElementById("pattern");
@@ -15,12 +16,12 @@
 		document.body.appendChild(outputDiv);
 		function updateAllOutput()
 		{
-			outputDiv.innerHTML = getSuggestions(textElem.value, patternElem.value, sortedCorpus);
+			outputDiv.innerHTML = getSuggestions2(textElem.value, patternElem.value, sortedCorpus);
 			patternDiv.innerHTML = patternElem.value;
 		}
 		updateAllOutput();
 	</script>
 	
-	<script src="tries.js"></script>
+	
 </body>
 </html>
