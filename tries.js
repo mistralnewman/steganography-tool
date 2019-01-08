@@ -34,10 +34,22 @@ function TrieNode(val, bin, ones, zeroes, end)
 		}
 		return side.get(ch);
 	}
+	
+	this.getWord = function(w)
+	{
+		let i = 0;
+		let currNode = this;
+		while(i < w.length)
+		{
+			i++;
+			currNode = currNode.get(w.charAt(i));
+		}
+		return currNode;
+	}
 		
 }
 
-let trieCorpus = new TrieNode("start+", null, new Map(), new Map(), false);
+let trieCorpus = new TrieNode("", null, new Map(), new Map(), false);
 
 console.log(trieCorpus);
 
@@ -84,7 +96,7 @@ for(word of corpus)
 }
 console.log(trieCorpus);
 
-function getSuggestions2(curr, patt, corpus)
+function getSuggestions2(curr, patt, corp)
 {
 	let currWords = curr.split(" ");
 	let currWord = currWords[currWords.length - 1];
@@ -99,14 +111,22 @@ function getSuggestions2(curr, patt, corpus)
 	{
 		return "Uhhh buddy you messed up";
 	}
-	return getTrieSuggestions(currWord, patt.substring(currTxt.length, patt.length), corpus);
+	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;}));
 }
 
-function getTrieSuggestions(word, patt, corpus)
+function getTrieSuggestions(patt, node, f)
 {
-	let currNode = corpus;
-	/*while(word.length > 1)
+	let side = patt.charAt(0) == "1" ? node.ones : node.zeroes;
+	console.log(node.val);
+	let sidearray = [];
+	let endarray = [];
+	if(side.size > 0)
 	{
-		if(currNode.
-	return getTrieSuggestionsHelper(patt, currNode, (function(x) { return x; }));*/
+		sidearray = Array.from(side.values()).map((function(x) {return getTrieSuggestions(patt.substring(1), x, (function(y) {return f(y) + node.val}))}));
+	}
+	if(node.end)
+	{
+		endarray = [f(node.val)];
+	}
+	return sidearray.concat(endarray);
 }

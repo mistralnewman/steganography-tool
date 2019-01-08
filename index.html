@@ -16,7 +16,7 @@
 		document.body.appendChild(outputDiv);
 		function updateAllOutput()
 		{
-			outputDiv.innerHTML = getSuggestions2(textElem.value, patternElem.value, sortedCorpus);
+			outputDiv.innerHTML = getSuggestions2(textElem.value, patternElem.value, trieCorpus);
 			patternDiv.innerHTML = patternElem.value;
 		}
 		updateAllOutput();

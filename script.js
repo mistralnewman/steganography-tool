@@ -1,6 +1,6 @@
 "use strict";
 
-let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she"];
+let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she","fig","vale"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
 console.log(sortedCorpus);
