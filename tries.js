@@ -117,16 +117,18 @@ function getSuggestions2(curr, patt, corp)
 function getTrieSuggestions(patt, node, f)
 {
 	let side = patt.charAt(0) == "1" ? node.ones : node.zeroes;
-	console.log(node.val);
+	//console.log(node.val);
 	let sidearray = [];
 	let endarray = [];
 	if(side.size > 0)
 	{
-		sidearray = Array.from(side.values()).map((function(x) {return getTrieSuggestions(patt.substring(1), x, (function(y) {return f(y) + node.val}))}));
+		sidearray = Array.from(side.values()).map((function(x) {return getTrieSuggestions(patt.substring(1), x, (function(y) {return f(y) + node.val}))})).flat();
+		console.log("side", sidearray);
 	}
 	if(node.end)
 	{
 		endarray = [f(node.val)];
+		console.log("end", endarray);
 	}
 	return sidearray.concat(endarray);
 }
