@@ -1,6 +1,6 @@
 "use strict";
 
-let corpus = ["earthpea","airfield","aabba","lol","the", "yyzzy","them","thesaurus","they","then","theniorus"];
+let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
 console.log(sortedCorpus);
@@ -44,12 +44,19 @@ function makeAntiSortedCorpus(corpus)
 	return sorted;
 }
 
+
+// TODO: make this yell at you if what you've already entered is wrong
+// right now it assumes you know what you're doing
+// which is bad
 function getSuggestions(curr, patt, corpus)
 {
 	let currWords = curr.split(" ");
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);
-	
+	if(currBin == patt)
+	{
+		return "<strong>NICE</strong>";
+	}
 	let remaining = patt.substring(currTxt.length,patt.length);
 	
 	if(curr == "" || curr.charAt(curr.length - 1) == " ")
@@ -67,6 +74,13 @@ function getSuggestions(curr, patt, corpus)
 function getPartialSuggest(word, patt, corpus)
 {
 	let i = corpus.size;
+	let keys = corpus.keys();
+	// binary search!
+	let l = 0;
+	let r = Math.floor(i - 1);
+	//while(c
+	
+	return("I dunno dude");
 }
 
 function getFullSuggest(patt, corpus)
@@ -82,7 +96,7 @@ function getFullSuggest(patt, corpus)
 		}
 		limit--;
 	}
-	return result;
+	return result.sort();
 	
 }
 
