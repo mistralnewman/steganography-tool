@@ -1,5 +1,3 @@
-let babyCorpus = ["abcde"];
-
 function TrieNode(val, bin, ones, zeroes, end)
 {
 	this.val = val;
@@ -92,7 +90,7 @@ function TrieNode(val, bin, ones, zeroes, end)
 let trieCorpus = new TrieNode("", null, [], [], true);
 
 
-for(word of babyCorpus)
+for(word of corpus)
 {
 	trieCorpus = trieCorpus.addWord(word);
 }
@@ -107,19 +105,33 @@ function getSuggestions2(curr, patt, corp)
 	let remaining = patt.substring(currTxt.length, patt.length);
 	if(currBin == patt)
 	{
-		return "<strong>NICE</strong>";
+		return "<strong>Success!</strong>";
 	}
 	if(currBin != patt.substring(0, currTxt.length))
 	{
-		return "Uhhh buddy you messed up";
+		return "<strong>Your input does not match the pattern!</strong>";
 	}
-	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord + x);
+	try
+	{
+		let result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord.substring(0, currWord.length - 1) + x);
+		if (result.length == 0)
+		{
+			return "<strong>No matching words found!</strong>";
+		}
+		else
+		{
+			return result;
+		}
+	}
+	catch(e)
+	{
+		return "<strong>No matching words found!</strong>";
+	}
 }
 
 function getTrieSuggestions(patt, trie)
 {
-	console.log("trie",trie);
-	if(patt.length <= 1 && trie.end)
+	if(patt.length < 1 && trie.end)
 	{
 		return [trie.val];
 	}
