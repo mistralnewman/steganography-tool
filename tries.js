@@ -100,7 +100,6 @@ function getSuggestions2(curr, patt, corp)
 {
 	let currWords = curr.split(" ");
 	let currWord = currWords[currWords.length - 1];
-	console.log(currWord);
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);
 	let remaining = patt.substring(currTxt.length, patt.length);
@@ -112,21 +111,31 @@ function getSuggestions2(curr, patt, corp)
 	{
 		return "Uhhh buddy you messed up";
 	}
-	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
+	let x = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
+	console.log("the thing",x);
+	return(x);
 }
 
-function getTrieSuggestions(patt, node, f)
+function getTrieSuggestions(patt, trie, f)
 {
-	let side = patt.charAt(0) == "1" ? node.ones : node.zeroes;
-	let sidearray = [];
-	let endarray = [];
-	if(side.size > 0)
+	console.log(patt);
+	if(patt.length < 1)
 	{
-		sidearray = Array.from(side.values()).map((function(x) {return getTrieSuggestions(patt.substring(1), x, (function(y) {return f(y) + node.val}))})).flat();
+		return [f("")];
 	}
-	if(node.end)
+	else
 	{
-		endarray = [f(node.val)];
+		let results = [];
+		let side = patt.charAt(0) == "1" ? trie.ones : trie.zeroes;
+		for(let node of side)
+		{
+			results = results.concat(getTrieSuggestions(patt.substring(1), node, (function(x) { return f(x) + trie.val })));
+			console.log("node",node);
+		}
+		if(trie.end)
+		{
+			results.push(f(trie.val));
+		}
+		return results;
 	}
-	return sidearray.concat(endarray);
 }
