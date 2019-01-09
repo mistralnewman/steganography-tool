@@ -3,10 +3,10 @@
 let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she","fig","vale"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
-console.log(sortedCorpus);
+//console.log(sortedCorpus);
 
 let antiSortedCorpus = makeAntiSortedCorpus(corpus);
-console.log(antiSortedCorpus);
+//console.log(antiSortedCorpus);
 
 function randomInt(bottom, top)
 {
@@ -129,6 +129,6 @@ function messageToPattern(msg)
 	}
 }
 
-console.log(getSuggestions("earthpea ","0011110000110011", sortedCorpus));
+//console.log(getSuggestions("earthpea ","0011110000110011", sortedCorpus));
 
 messageToPattern("test");

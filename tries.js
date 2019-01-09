@@ -1,10 +1,12 @@
+let babyCorpus = ["abcde"];
+
 function TrieNode(val, bin, ones, zeroes, end)
 {
 	this.val = val;
 	this.bin = bin;
 	this.ones = ones;
 	this.zeroes = zeroes;
-	this.end = end;
+	this.end = end
 	
 	this.has = function(ch)
 	{
@@ -90,7 +92,7 @@ function TrieNode(val, bin, ones, zeroes, end)
 let trieCorpus = new TrieNode("", null, [], [], true);
 
 
-for(word of corpus)
+for(word of babyCorpus)
 {
 	trieCorpus = trieCorpus.addWord(word);
 }
@@ -111,17 +113,15 @@ function getSuggestions2(curr, patt, corp)
 	{
 		return "Uhhh buddy you messed up";
 	}
-	let x = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
-	console.log("the thing",x);
-	return(x);
+	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
 }
 
 function getTrieSuggestions(patt, trie, f)
 {
-	console.log(patt);
-	if(patt.length < 1)
+	console.log("trie",trie);
+	if(patt.length <= 1 && trie.end)
 	{
-		return [f("")];
+		return [f(trie.val)];
 	}
 	else
 	{
@@ -130,7 +130,6 @@ function getTrieSuggestions(patt, trie, f)
 		for(let node of side)
 		{
 			results = results.concat(getTrieSuggestions(patt.substring(1), node, (function(x) { return f(x) + trie.val })));
-			console.log("node",node);
 		}
 		if(trie.end)
 		{
