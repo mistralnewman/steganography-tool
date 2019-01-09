@@ -15,7 +15,14 @@ function TrieNode(val, bin, ones, zeroes, end)
 		{
 			side = this.ones;
 		}
-		return side.has(ch);
+		for (let node of side)
+		{
+			if(node.val == ch)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	this.get = function(ch)
@@ -51,7 +58,7 @@ function TrieNode(val, bin, ones, zeroes, end)
 		
 }
 
-let trieCorpus = new TrieNode("", null, new Map(), new Map(), false);
+let trieCorpus = new TrieNode("", null, [], [], false);
 
 console.log(trieCorpus);
 
@@ -69,30 +76,39 @@ function addToTrie(word, trie)
 	{
 		side = trie.zeroes;
 	}
-	if(side.has(currChar))
+	let i = 0;
+	while(i < side.length && side[i].val != currChar)
 	{
-		if(end)
+		i++;
+	}
+	if(i >= side.length)
+	{
+		let newNode = new TrieNode(currChar, charBin, [], [], end);
+		if(!end)
 		{
-			side.get(currChar).end = true;
+			newNode = addToTrie(word.substring(1), newNode);
 		}
-		else
-		{
-			side.set(currChar, addToTrie(word.substring(1, word.length), side.get(currChar)));
-		}
+		side = side.push(newNode);
+		charBin == "1" ? trie.ones = side : trie.zeroes = side;
 	}
 	else
 	{
-		let newNode = new TrieNode(currChar, charBin, new Map(), new Map(), end);
-		if(!end)
+		let node = side[i];
+		console.log("node", node);
+		if(end)
 		{
-			newNode = addToTrie(word.substring(1, word.length), newNode);
+			node.end = true;
 		}
-		side.set(currChar, newNode);
+		else
+		{
+			node = addToTrie(word.substring(1), node);
+		}
 	}
+	console.log(trie);
 	return trie;
 }
 
-for(word of testwords)
+for(word of corpus)
 {
 	trieCorpus = addToTrie(word, trieCorpus);
 }

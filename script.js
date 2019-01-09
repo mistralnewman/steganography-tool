@@ -120,4 +120,15 @@ function cipherToBin(txt)
 	return r;
 }
 
+function messageToPattern(msg)
+{
+	let r = [];
+	for( let chr of msg )
+	{
+		console.log("0" + chr.charCodeAt(0).toString(2));
+	}
+}
+
 console.log(getSuggestions("earthpea ","0011110000110011", sortedCorpus));
+
+messageToPattern("test");
