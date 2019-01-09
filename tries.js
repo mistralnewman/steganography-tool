@@ -113,15 +113,15 @@ function getSuggestions2(curr, patt, corp)
 	{
 		return "Uhhh buddy you messed up";
 	}
-	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord), (function(x) {return x;})).map(x => currWord + x);
+	return getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord + x);
 }
 
-function getTrieSuggestions(patt, trie, f)
+function getTrieSuggestions(patt, trie)
 {
 	console.log("trie",trie);
 	if(patt.length <= 1 && trie.end)
 	{
-		return [f(trie.val)];
+		return [trie.val];
 	}
 	else
 	{
@@ -129,12 +129,12 @@ function getTrieSuggestions(patt, trie, f)
 		let side = patt.charAt(0) == "1" ? trie.ones : trie.zeroes;
 		for(let node of side)
 		{
-			results = results.concat(getTrieSuggestions(patt.substring(1), node, (function(x) { return f(x) + trie.val })));
+			results = results.concat(getTrieSuggestions(patt.substring(1), node));
 		}
 		if(trie.end)
 		{
-			results.push(f(trie.val));
+			results.push(trie.val);
 		}
-		return results;
+		return results.map(x => trie.val + x);
 	}
 }
