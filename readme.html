@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><body>
+<p>
+This is a tool for <em>steganography,</em> which means a way to hide secret messages in plain sight - everyone can see the place where the message is hidden, but nobody knows the message is there except the people who are meant to be able to decode it. The method of steganography used here involves the vowels and consonants in a piece of text, and representations of a secret message in binary. Here's an example:
+</p>
+<p>
+<table>
+
+<tr><td>Say I want to encode the message</td> <td><strong><3</strong>.</td></tr>
+<tr><td>Using the <a href="http://www.asciitable.com/">ASCII standard</a>, I can represent this message as</td><td><strong>60 51</strong>.</td></tr>
+<tr><td>If I translate these into binary (base-two) numbers, I get</td><td><strong>111100 110011</strong></td></tr>
+<tr><td>Computers store data as groups of 8, so I'll add leading zeroes:</td><td><strong>00111100 00110011</strong></td></tr>
+<tr><td>I can stick them together into one pattern:</td><td><strong>0011110000110011</strong></td></tr>
+
+</table>
+</p>
+
+<p>That's the pattern for the secret message I'm going to try to hide! (Yes, that was a lot of steps - but the computer will do it for you automatically if you enter your secret message into the "Word:" blank.</p>
+<p>Now how do I hide the message in text? This is the hard part. I need to find some words which have vowels in the same places as zeroes in the pattern, and consonants in the same places as ones. A good example here is "earthpea airfield."</p>
+<table>
+<tr><td>e</td><td>a</td><td>r</td><td>t</td><td>h</td><td>p</td><td>e</td><td>a</td><td>a</td><td>i</td><td>r</td><td>f</td><td>i</td><td>e</td><td>l</td><td>d</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+</table>
+
+<p>All the vowels in "earthpea airfield" are lined up with zeroes, and the consonants are lined up with ones! I've made a secret message that has <strong><3</strong> hidden in it.</p>
+
+<p>In fact, I cheated to make that message: I used a computer program which suggests words matching the secret pattern to me. And so can you!</p>
+
+<p>This tool allows you to enter a secret message which you'd like to hide. It will convert it into a binary pattern for you, and then suggest words which match the pattern. As you enter letters, it narrows down its suggestions. If you type an incorrect letter, it will alert you that your input no longer matches the pattern.</p>
+
+<p>You could use this tool to, for instance, compose a poem, where the lines of the poem have a secret word or words hidden in them. Or you could introduce it to your friends and use it to share secret messages.</p>
+
+<p>In the advanced settings, you can enter your own binary patterns, or change which letters are considered "one" and which are considered "zero."</p>
+
+</html>

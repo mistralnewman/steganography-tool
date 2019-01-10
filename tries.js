@@ -1,3 +1,33 @@
+// input to this function should be just letters! take out the spaces I am begging you!
+function cipherToBin(txt)
+{
+	let r = "";
+	let vowels = ["a","e","i","o","u","y"]
+	for (var i = 0; i < txt.length; i++)
+	{
+		if(vowels.includes(txt.charAt(i).toLowerCase()))
+		{
+			r += "0";
+		}
+		else
+		{
+			r += "1";
+		}
+	}
+	return r;
+}
+
+function messageToPattern(msg)
+{
+	let r = [];
+	for( let chr of msg )
+	{
+		r.push(chr.charCodeAt(0).toString(2));
+	}
+	return r.map((function(x) { while(x.length < 8) { x = "0" + x; } return x; })).join('');
+}
+
+
 function TrieNode(val, bin, ones, zeroes, end)
 {
 	this.val = val;
@@ -87,15 +117,6 @@ function TrieNode(val, bin, ones, zeroes, end)
 	}
 }
 
-let trieCorpus = new TrieNode("", null, [], [], false);
-
-
-for(word of testwords2)
-{
-	trieCorpus = trieCorpus.addWord(word);
-}
-console.log(trieCorpus);
-
 function getSuggestions2(curr, patt, corp)
 {
 	let currWords = curr.split(" ");
@@ -150,3 +171,13 @@ function getTrieSuggestions(patt, trie)
 		return results.map(x => trie.val + x);
 	}
 }
+
+//start a corpus
+let trieCorpus = new TrieNode("", null, [], [], false);
+
+//add words to corpus
+for(word of testwords2)
+{
+	trieCorpus = trieCorpus.addWord(word);
+}
+console.log(trieCorpus);
