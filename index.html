@@ -7,24 +7,12 @@
 	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="script.js"></script>
 	<script src="tries.js"></script>
-	Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">
-	<script>
-		let patternElem = document.getElementById("pattern");
-		let patternDiv = document.createElement("div");
-		document.body.appendChild(patternDiv);
-	</script>
+	<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
+	Word: <input id="word" type="text" placeholder="<3" onkeyup="updateAllOutput()">
+	<div id="display-pattern"></div>
 	Text: <input id="text" type="text" placeholder="earthpea airfield" onkeyup="updateAllOutput()">
-	<script>
-		let textElem = document.getElementById("text");
-		let outputDiv = document.createElement("div");
-		document.body.appendChild(outputDiv);
-		function updateAllOutput()
-		{
-			outputDiv.innerHTML = getSuggestions2(textElem.value, patternElem.value, trieCorpus);
-			patternDiv.innerHTML = patternElem.value;
-		}
-		updateAllOutput();
-	</script>
+	<div id="text-output"></div>
+	<script src="output.js"></script>
 	
 	
 </body>

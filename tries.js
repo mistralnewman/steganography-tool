@@ -87,10 +87,10 @@ function TrieNode(val, bin, ones, zeroes, end)
 	}
 }
 
-let trieCorpus = new TrieNode("", null, [], [], true);
+let trieCorpus = new TrieNode("", null, [], [], false);
 
 
-for(word of corpus)
+for(word of testwords2)
 {
 	trieCorpus = trieCorpus.addWord(word);
 }
@@ -131,7 +131,7 @@ function getSuggestions2(curr, patt, corp)
 
 function getTrieSuggestions(patt, trie)
 {
-	if(patt.length < 1 && trie.end)
+	if(patt.length <= 1 && trie.end)
 	{
 		return [trie.val];
 	}

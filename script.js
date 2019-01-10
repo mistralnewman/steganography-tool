@@ -1,6 +1,6 @@
 "use strict";
 
-let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she","fig","vale"];
+let corpus = ["earthpea","airfield","aabba","lol","the","yyzzy","them","thesaurus","they","then","theniorus","shel","bell","shell","she","gif","lala"];
 
 let sortedCorpus = makeSortedCorpus(corpus);
 //console.log(sortedCorpus);
@@ -125,10 +125,11 @@ function messageToPattern(msg)
 	let r = [];
 	for( let chr of msg )
 	{
-		console.log("0" + chr.charCodeAt(0).toString(2));
+		r.push(chr.charCodeAt(0).toString(2));
 	}
+	return r.map((function(x) { while(x.length < 8) { x = "0" + x; } return x; })).join('');
 }
 
 //console.log(getSuggestions("earthpea ","0011110000110011", sortedCorpus));
 
-messageToPattern("test");
+console.log(messageToPattern("<3"));
