@@ -108,7 +108,7 @@ function cipherToBin(txt)
 	let vowels = ["a","e","i","o","u","y"]
 	for (var i = 0; i < txt.length; i++)
 	{
-		if(vowels.includes(txt.charAt(i)))
+		if(vowels.includes(txt.charAt(i).toLowerCase()))
 		{
 			r += "0";
 		}
