@@ -1,13 +1,17 @@
-// input to this function should be just letters! take out the spaces I am begging you!
+let vowels = "aeiouy".split('');
+let stopchars = " .,?!'\"():;".split('');
 function cipherToBin(txt)
 {
 	let r = "";
-	let vowels = ["a","e","i","o","u","y"]
 	for (var i = 0; i < txt.length; i++)
 	{
 		if(vowels.includes(txt.charAt(i).toLowerCase()))
 		{
 			r += "0";
+		}
+		else if(stopchars.includes(txt.charAt(i)))
+		{
+			r += "";
 		}
 		else
 		{
@@ -119,7 +123,7 @@ function TrieNode(val, bin, ones, zeroes, end)
 
 function getSuggestions(curr, patt, corp)
 {
-	let currWords = curr.split(" ");
+	let currWords = curr.replace(/[.,?!'\\"():;]/g,"").split(" ");
 	let currWord = currWords[currWords.length - 1];
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);

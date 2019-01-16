@@ -9,9 +9,9 @@
 	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="tries.js"></script>
 	<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
-	<span class="heading">Word to be hidden:</span> <input id="word" type="text" placeholder="<3" onkeyup="updateAllOutput()">
-	<span class="heading">Binary pattern:</span><input id="display-pattern" disabled="disabled"></div>
-	<span class="heading">Ciphertext:</span><input id="text" type="text" placeholder="earthpea airfield" onkeyup="updateAllOutput()">
+	<span class="heading">Word to be hidden:</span> <textarea id="word" type="text" placeholder="<3" onkeyup="updateAllOutput()"></textarea>
+	<span class="heading">Binary pattern:</span><textarea id="display-pattern" disabled="disabled"></textarea>
+	<span class="heading">Ciphertext:</span><textarea id="text" type="text" placeholder="earthpea airfield" onkeyup="updateAllOutput()"></textarea>
 	<div id="status-message"></div>
 	<span class="heading">Available words:</span><table id="text-output"></table>
 	<script src="output.js"></script>
