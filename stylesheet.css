@@ -18,9 +18,30 @@ td {
 }
 
 #status-message {
-	background-color: #eeaaaa;
+	font-family: 'Antic Slab', serif;
+}
+
+#word, select, textarea {
+	color: #ffffff;
+	background-color: #303030;
+
+}
+#display-pattern, select, textarea {
+	color: #ffffff;
+	background-color: #606060;
+}
+
+#text, select, textarea {
+	color: #000000;
+	background-color: #D0D0D0;
 }
 
 * {
 	font-size: 16px;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+.heading {
+	font-family: 'Antic Slab', serif;
+	font-weight: bold;
 }

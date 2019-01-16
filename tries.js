@@ -162,6 +162,10 @@ function getTrieSuggestions(patt, trie)
 	{
 		return [trie.val];
 	}
+	if(patt.length < 1)
+	{
+		return [];
+	}
 	else
 	{
 		let results = [];
