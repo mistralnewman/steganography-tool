@@ -1,9 +1,9 @@
 //let patternElem = document.getElementById("pattern");
-let wordElem = document.getElementById("word");
-let patternOutput = document.getElementById("display-pattern");
-let textElem = document.getElementById("text");
-let outputTable = document.getElementById("text-output");
-let statusOutput = document.getElementById("status-message");
+let plaintextInput = document.getElementById("plaintext-input");
+let patternOutput = document.getElementById("pattern-output");
+let ciphertextInput = document.getElementById("ciphertext-input");
+let wordOutput = document.getElementById("word-output");
+let statusOutput = document.getElementById("status-output");
 
 let statuses = {
 	0: { message: "Success!", color: "#d2ffbc" },
@@ -14,24 +14,29 @@ let statuses = {
 
 function updateAllOutput()
 {
-	let patt = messageToPattern(wordElem.value);
+	// display binary pattern
+	let patt = messageToPattern(plaintextInput.value);
 	patternOutput.value = patt;
-	let suggestions = getSuggestions(textElem.value, patt, trieCorpus);
+	
+	// get the suggestions & status message
+	let suggestions = getSuggestions(ciphertextInput.value, patt, trieCorpus);
+	//update status message & color
 	let statusMessage = suggestions[0];
 	statusOutput.innerHTML = "<strong>Status:</strong> "+statuses[statusMessage].message;
 	statusOutput.style.backgroundColor = statuses[statusMessage].color;
-	console.log(statuses[statusMessage].color);
-	let outputArray = suggestions[1]
+	//update suggested words
+	let wordOutputArray = suggestions[1]
+	console.log(wordOutputArray);
 	let tableWidth = 6;
 	let tableHeight = 6;
-	outputTable.innerHTML = "";
+	wordOutput.innerHTML = "";
 	for(let i = 0; i < tableHeight; i++)
 	{
-		let currRow = outputTable.insertRow(i);
+		let currRow = wordOutput.insertRow(i);
 		for(let j = 0; j < tableWidth; j++)
 		{
 			let currCell = currRow.insertCell(j);
-			let currData = outputArray[(tableWidth*i)+j];
+			let currData = wordOutputArray[(tableWidth*i)+j];
 			currCell.innerHTML = typeof currData !=  "undefined" ? currData : "";
 		}
 	}

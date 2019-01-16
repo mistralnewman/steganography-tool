@@ -16,23 +16,23 @@ td {
 	height: 20px;
 }
 
-#status-message {
+#status-output {
 	font-family: 'Antic Slab', serif;
 }
 
-#word, select, textarea {
+#plaintext-input, select, textarea {
 	height: 100px;
 	color: #ffffff;
 	background-color: #303030;
 
 }
-#display-pattern, select, textarea {
+#pattern-output, select, textarea {
 	height: 100px;
 	color: #ffffff;
 	background-color: #606060;
 }
 
-#text, select, textarea {
+#ciphertext-input, select, textarea {
 	height: 100px;
 	color: #000000;
 	background-color: #D0D0D0;
