@@ -152,7 +152,7 @@ function getSuggestions2(curr, patt, corp)
 
 function getTrieSuggestions(patt, trie)
 {
-	if(patt.length <= 1 && trie.end)
+	if(trie.end)
 	{
 		return [trie.val];
 	}
@@ -163,10 +163,6 @@ function getTrieSuggestions(patt, trie)
 		for(let node of side)
 		{
 			results = results.concat(getTrieSuggestions(patt.substring(1), node));
-		}
-		if(trie.end)
-		{
-			results.push(trie.val);
 		}
 		return results.map(x => trie.val + x);
 	}
