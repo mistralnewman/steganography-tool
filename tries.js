@@ -117,37 +117,43 @@ function TrieNode(val, bin, ones, zeroes, end)
 	}
 }
 
-function getSuggestions2(curr, patt, corp)
+function getSuggestions(curr, patt, corp)
 {
 	let currWords = curr.split(" ");
 	let currWord = currWords[currWords.length - 1];
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);
 	let remaining = patt.substring(currTxt.length, patt.length);
-	if(currBin == patt)
-	{
-		return "<strong>Success!</strong>";
-	}
-	if(currBin != patt.substring(0, currTxt.length))
-	{
-		return "<strong>Your input does not match the pattern!</strong>";
-	}
+	let state;
+	let result = [];
 	try
 	{
-		let result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord.substring(0, currWord.length - 1) + x);
+		result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord.substring(0, currWord.length - 1) + x);
 		if (result.length == 0)
 		{
-			return "<strong>No matching words found!</strong>";
+			state = 2;
 		}
 		else
 		{
-			return result;
+			state = 1;
 		}
 	}
 	catch(e)
 	{
-		return "<strong>No matching words found!</strong>";
+		state = 2;
+		result = [];
 	}
+	if(currBin == patt)
+	{
+		state = 0;
+		result = [];
+	}
+	if(currBin != patt.substring(0, currTxt.length))
+	{
+		state = 3;
+		result = [];
+	}
+	return [state, result];
 }
 
 function getTrieSuggestions(patt, trie)

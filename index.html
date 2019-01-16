@@ -8,10 +8,11 @@
 	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="tries.js"></script>
 	<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
-	Word: <input id="word" type="text" placeholder="<3" onkeyup="updateAllOutput()">
-	<div id="display-pattern"></div>
-	Text: <input id="text" type="text" placeholder="earthpea airfield" onkeyup="updateAllOutput()">
-	<div id="text-output"></div>
+	Word to be hidden: <input id="word" type="text" placeholder="<3" onkeyup="updateAllOutput()">
+	Binary pattern:<input id="display-pattern" disabled="disabled"></div>
+	Ciphertext: <input id="text" type="text" placeholder="earthpea airfield" onkeyup="updateAllOutput()">
+	<div id="status-message"></div>
+	Available words:<table id="text-output"></table>
 	<script src="output.js"></script>
 	
 	
