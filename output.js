@@ -42,3 +42,11 @@ function updateAllOutput()
 	}
 }
 updateAllOutput();
+
+function clearInput()
+{
+	alert("clearing");
+	plaintextInput.value = "";
+	ciphertextInput.value = "";
+	updateAllOutput();
+}
