@@ -4,12 +4,19 @@ let patternOutput = document.getElementById("pattern-output");
 let ciphertextInput = document.getElementById("ciphertext-input");
 let wordOutput = document.getElementById("word-output");
 let statusOutput = document.getElementById("status-output");
+let modeInput = document.getElementById("mode-input");
 
 let statuses = {
 	0: { message: "Success!", color: "#d2ffbc" },
 	1: { message: "So far so good!", color: "#fffba2" },
 	2: { message: "No matching words found!", color: "#ffc08b" },
 	3: { message: "Your input does not match!", color: "#ffaeae" }
+}
+
+let sortFunctions = {
+	0: a => a.sort(),//(x, y) => x.toLowerCase().localeCompare(y.toLowerCase)), // don't use this it's bad
+	1: a => a.sort((x, y) => (y.length - x.length)),
+	2: a => a.sort((x, y) => (x.length - y.length)),
 }
 
 function updateAllOutput()
@@ -24,9 +31,10 @@ function updateAllOutput()
 	let statusMessage = suggestions[0];
 	statusOutput.innerHTML = "<strong>Status:</strong> "+statuses[statusMessage].message;
 	statusOutput.style.backgroundColor = statuses[statusMessage].color;
-	//update suggested words
-	let wordOutputArray = suggestions[1]
-	console.log(wordOutputArray);
+	//update suggested words (sorted by sort mode)
+	let sortMode = +modeInput.value;
+	console.log(sortMode);
+	let wordOutputArray = sortFunctions[sortMode](suggestions[1]);
 	let tableWidth = 6;
 	let tableHeight = 6;
 	wordOutput.innerHTML = "";

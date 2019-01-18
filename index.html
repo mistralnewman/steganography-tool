@@ -9,30 +9,33 @@
 	<script src="output.js" defer></script>
 	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="tries.js"></script>
-	<button type="button" onclick="clearInput();">Clear</button>
-	<br>
-	<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
-	<div id="plaintext-div">
-		<span class="heading">Word to be hidden:</span>
-		<textarea id="plaintext-input" type="text" placeholder="secret message" onkeyup="updateAllOutput()"></textarea>
-	</div>
-	<div id="pattern-div">
-		<span class="heading">Binary pattern:</span>
-		<textarea id="pattern-output" disabled="disabled" placeholder="ones and zeroes"></textarea>
-	</div>
-	<div id="ciphertext-div">
-		<span class="heading">Ciphertext:</span>
-		<textarea id="ciphertext-input" type="text" placeholder="ciphertext" onkeyup="updateAllOutput()"></textarea>
-	</div>
-	<div id="status-output"></div>
-	<div id="mode-input">
-		<select>
-			<option value="0">alphabetically</option>
-			<option value="1">by longest word</option>
-		</select>
-	</div>
-	<div id="word-div">
-		<span class="heading">Available words:</span><table id="word-output"></table>
+	<div id="content">
+		<button type="button" onclick="clearInput();">Clear</button>
+		<br>
+		<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
+		<div id="plaintext-div">
+			<span class="heading">Word to be hidden:</span>
+			<textarea id="plaintext-input" type="text" placeholder="secret message" onkeyup="updateAllOutput()"></textarea>
+		</div>
+		<div id="pattern-div">
+			<span class="heading">Binary pattern:</span>
+			<textarea id="pattern-output" disabled="disabled" placeholder="ones and zeroes"></textarea>
+		</div>
+		<div id="ciphertext-div">
+			<span class="heading">Ciphertext:</span>
+			<textarea id="ciphertext-input" type="text" placeholder="ciphertext" onkeyup="updateAllOutput()"></textarea>
+		</div>
+		<div id="status-output"></div>
+		<div id="mode-div" onchange="updateAllOutput()">
+			<select id="mode-input">
+				<option value="0" selected="selected">alphabetically</option>
+				<option value="1">longest first</option>
+				<option value="2">shortest first</option>
+			</select>
+		</div>
+		<div id="word-div">
+			<span class="heading">Available words:</span><table id="word-output"></table>
+		</div>
 	</div>
 </body>
 </html>
