@@ -15,7 +15,7 @@
 		<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
 		<div id="plaintext-div">
 			<span class="heading">Word to be hidden:</span>
-			<textarea id="plaintext-input" type="text" placeholder="secret message" onkeyup="updateAllOutput()"></textarea>
+			<textarea id="plaintext-input" type="text" placeholder="secret message"></textarea>
 		</div>
 		<div id="pattern-div">
 			<span class="heading">Binary pattern:</span>
@@ -23,11 +23,11 @@
 		</div>
 		<div id="ciphertext-div">
 			<span class="heading">Ciphertext:</span>
-			<textarea id="ciphertext-input" type="text" placeholder="ciphertext" onkeyup="updateAllOutput()"></textarea>
+			<textarea id="ciphertext-input" type="text" placeholder="ciphertext"></textarea>
 		</div>
 		<div id="status-output"></div>
-		<div id="mode-div" onchange="updateAllOutput()">
-			<select id="mode-input">
+		<div id="mode-div">
+			<select id="mode-input"onchange="updateAllOutput()">
 				<option value="0" selected="selected">alphabetically</option>
 				<option value="1">longest first</option>
 				<option value="2">shortest first</option>

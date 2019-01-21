@@ -49,7 +49,6 @@ function updateAllOutput()
 		}
 	}
 }
-updateAllOutput();
 
 function clearInput()
 {
@@ -57,3 +56,8 @@ function clearInput()
 	ciphertextInput.value = "";
 	updateAllOutput();
 }
+
+plaintextInput.addEventListener("keyup", updateAllOutput);
+ciphertextInput.addEventListener("keyup", updateAllOutput);
+
+updateAllOutput();
