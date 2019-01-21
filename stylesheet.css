@@ -16,10 +16,6 @@ td {
 	height: 20px;
 }
 
-#status-output {
-	font-family: 'Antic Slab', serif;
-}
-
 #plaintext-input {
 	height: 100px;
 	color: #ffffff;
@@ -30,12 +26,22 @@ td {
 	height: 100px;
 	color: #ffffff;
 	background-color: #606060;
+	font-family: 'Anonymous Pro', monospace;
 }
 
 #ciphertext-input {
 	height: 100px;
 	color: #000000;
 	background-color: #D0D0D0;
+	font-family: 'Anonymous Pro', monospace;
+}
+
+#status-output {
+	font-family: 'Antic Slab', serif;
+}
+
+#word-output {
+	font-family: 'Anonymous Pro', monospace;
 }
 
 * {
@@ -44,7 +50,8 @@ td {
 }
 
 .heading {
-	font-family: 'Antic Slab', serif;
+	/*font-family: 'Antic Slab', serif;*/
+	font-family: 'Anonymous Pro', monospace;
 	font-weight: bold;
 }
 

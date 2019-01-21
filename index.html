@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link href="https://fonts.googleapis.com/css?family=Antic+Slab|Fira+Sans" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Antic+Slab|Fira+Sans|Anonymous+Pro" rel="stylesheet"> 
 </head>
 <body>
 	<script src="output.js" defer></script>
 	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="tries.js"></script>
 	<div id="content">
-		<button type="button" onclick="clearInput();">Clear</button>
+		<button type="button" id="clear-button">Clear</button>
 		<br>
 		<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
 		<div id="plaintext-div">
@@ -27,7 +27,7 @@
 		</div>
 		<div id="status-output"></div>
 		<div id="mode-div">
-			<select id="mode-input"onchange="updateAllOutput()">
+			<select id="mode-input">
 				<option value="0" selected="selected">alphabetically</option>
 				<option value="1">longest first</option>
 				<option value="2">shortest first</option>

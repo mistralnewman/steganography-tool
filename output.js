@@ -1,10 +1,11 @@
-//let patternElem = document.getElementById("pattern");
+//get the things I need to look at or change
 let plaintextInput = document.getElementById("plaintext-input");
 let patternOutput = document.getElementById("pattern-output");
 let ciphertextInput = document.getElementById("ciphertext-input");
 let wordOutput = document.getElementById("word-output");
 let statusOutput = document.getElementById("status-output");
 let modeInput = document.getElementById("mode-input");
+let clearButton = document.getElementById("clear-button");
 
 let statuses = {
 	0: { message: "Success!", color: "#d2ffbc" },
@@ -59,5 +60,7 @@ function clearInput()
 
 plaintextInput.addEventListener("keyup", updateAllOutput);
 ciphertextInput.addEventListener("keyup", updateAllOutput);
+clearButton.addEventListener("click", clearInput);
+modeInput.addEventListener("change", updateAllOutput);
 
 updateAllOutput();
