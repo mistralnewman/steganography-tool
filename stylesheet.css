@@ -1,4 +1,9 @@
+* { 
+	overflow: hidden;
+}
+
 textarea {
+	position: relative;
 	width: 100%;
 	resize: none;
 }
@@ -9,11 +14,12 @@ table {
 	width: 100%;
 	text-align: center;
 	table-layout: fixed;
+	max-height: 25%;
 }
 
 td {
 	border: 1px solid black;
-	height: 20px;
+	height: 16.666666666666666666666666666%;
 }
 
 #plaintext-input {
@@ -36,10 +42,6 @@ td {
 	font-family: 'Anonymous Pro', monospace;
 }
 
-#status-output {
-	font-family: 'Antic Slab', serif;
-}
-
 #word-output {
 	font-family: 'Anonymous Pro', monospace;
 }
@@ -50,17 +52,53 @@ td {
 }
 
 .heading {
-	/*font-family: 'Antic Slab', serif;*/
 	font-family: 'Anonymous Pro', monospace;
 	font-weight: bold;
 }
 
 #content {
 	height: 100vh;
-	position: fixed;
+	max-height: 100vh;
+	max-width: 100%;
+	position: absolute;
 	top: 0;
-	left: 0;
-	right: 0;
+	left: 10px;
+	right: 10px;
 	bottom: 0;
-	padding: 10px;
+	padding: 0px;
+}
+
+div {
+	position: relative;
+	/*border: 1px solid red;*/
+	padding: 0px;
+}
+
+#clear-div {
+	height: 5%;
+}
+
+#plaintext-div {
+	height: 20%;
+}
+
+#pattern-div {
+	height: 20%
+}
+
+#ciphertext-div {
+	height: 20%;
+}
+
+#status-output {
+	font-family: 'Antic Slab', serif;
+	height: 5%;
+}
+
+#mode-div {
+	height: 5%;
+}
+
+#word-div {
+	height: 25%;
 }
