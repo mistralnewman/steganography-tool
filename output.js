@@ -46,7 +46,12 @@ function updateAllOutput()
 		{
 			let currCell = currRow.insertCell(j);
 			let currData = wordOutputArray[(tableWidth*i)+j];
-			currCell.innerHTML = typeof currData !=  "undefined" ? currData : "";
+			currData = typeof currData !=  "undefined" ? currData : "";
+			let wordLink = document.createElement("a");
+			wordLink.appendChild(document.createTextNode(currData));
+			wordLink.href = "#";
+			wordLink.addEventListener("click", (x => addToOutput(currData)));
+			currCell.appendChild(wordLink);
 		}
 	}
 }
@@ -57,6 +62,13 @@ function clearInput()
 	ciphertextInput.value = "";
 	updateAllOutput();
 }
+
+function addToOutput(word)
+{
+	ciphertextInput.value += word + " ";
+	updateAllOutput();
+}
+	
 
 plaintextInput.addEventListener("keyup", updateAllOutput);
 ciphertextInput.addEventListener("keyup", updateAllOutput);
