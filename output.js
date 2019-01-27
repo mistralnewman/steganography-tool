@@ -24,20 +24,19 @@ function updateAllOutput()
 {
 	// display binary pattern
 	let patt = messageToPattern(plaintextInput.value);
-	patternOutput.value = patt;
+	patternOutput.innerText = patt;
 	
 	// get the suggestions & status message
-	let suggestions = getSuggestions(ciphertextInput.value, patt, trieCorpus);
+	let suggestions = getSuggestions(ciphertextInput.innerText.replace("\n", ""), patt, trieCorpus);
 	//update status message & color
 	let statusMessage = suggestions[0];
 	statusOutput.innerHTML = "<strong>Status:</strong> "+statuses[statusMessage].message;
 	statusOutput.style.backgroundColor = statuses[statusMessage].color;
 	//update suggested words (sorted by sort mode)
 	let sortMode = +modeInput.value;
-	console.log(sortMode);
 	let wordOutputArray = sortFunctions[sortMode](suggestions[1]);
 	let tableWidth = 6;
-	let tableHeight = 6;
+	let tableHeight = 100;
 	wordOutput.innerHTML = "";
 	for(let i = 0; i < tableHeight; i++)
 	{
@@ -54,24 +53,26 @@ function updateAllOutput()
 			currCell.appendChild(wordLink);
 		}
 	}
+	
+	console.log(ciphertextInput.innerText);
 }
 
 function clearInput()
 {
 	plaintextInput.value = "";
-	ciphertextInput.value = "";
+	ciphertextInput.innerText = "";
 	updateAllOutput();
 }
 
 function addToOutput(word)
 {
-	ciphertextInput.value += word + " ";
+	ciphertextInput.innerText += word + " ";
 	updateAllOutput();
 }
 	
 
-plaintextInput.addEventListener("keyup", updateAllOutput);
-ciphertextInput.addEventListener("keyup", updateAllOutput);
+plaintextInput.addEventListener("input", updateAllOutput);
+ciphertextInput.addEventListener("input", updateAllOutput);
 clearButton.addEventListener("click", clearInput);
 modeInput.addEventListener("change", updateAllOutput);
 

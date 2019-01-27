@@ -130,9 +130,13 @@ function getSuggestions(curr, patt, corp)
 	let remaining = patt.substring(currTxt.length, patt.length);
 	let state;
 	let result = [];
+	for(let x of currWord)
+	{
+		console.log(x.charCodeAt(0));
+	}
 	try
 	{
-		result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map(x => currWord.substring(0, currWord.length - 1) + x);
+		result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map( x => (currWord.substring(0, currWord.length - 1) + x));
 		if (result.length == 0)
 		{
 			state = 2;
