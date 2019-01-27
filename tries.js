@@ -123,17 +123,13 @@ function TrieNode(val, bin, ones, zeroes, end)
 
 function getSuggestions(curr, patt, corp)
 {
-	let currWords = curr.replace(/[.,?!'\\"():;]/g,"").split(" ");
+	let currWords = curr.replace(/[.,?!'\\"():;]/g,"").split(/[\xa0 ]/);
 	let currWord = currWords[currWords.length - 1];
 	let currTxt = currWords.join("");
 	let currBin = cipherToBin(currTxt);
 	let remaining = patt.substring(currTxt.length, patt.length);
 	let state;
 	let result = [];
-	for(let x of currWord)
-	{
-		console.log(x.charCodeAt(0));
-	}
 	try
 	{
 		result = getTrieSuggestions(patt.substring(currTxt.length, patt.length), corp.getWord(currWord)).map( x => (currWord.substring(0, currWord.length - 1) + x));
