@@ -182,11 +182,26 @@ function getTrieSuggestions(patt, trie)
 	}
 }
 
+function loadDocument(docName) {
+	var result = null;
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", docName, false);
+	xhttp.send();
+	if(xhttp.status == 200) {
+		result = xhttp.responseText;
+	}
+	return result;
+}
+// corpus is from here https://github.com/first20hours/google-10000-english
+// but hosted on Oberlin servers
+// because I don't want github to get mad at me
+let words = loadDocument("google-10000-english.txt").split("\n");
+
 //start a corpus
 let trieCorpus = new TrieNode("", null, [], [], false);
 
 //add words to corpus
-for(word of testwords2)
+for(word of words)
 {
 	trieCorpus = trieCorpus.addWord(word);
 }
