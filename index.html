@@ -7,25 +7,15 @@
 </head>
 <body>
 	<script src="output.js" defer></script>
-	<script src="words.js"></script> <!--I'm sorry-->
 	<script src="tries.js"></script>
 	<div id="content">
 		<div id="clear-div">
 			<button type="button" id="clear-button">Clear</button>
 		</div>
-		<!--Pattern: <input id="pattern" type="text" placeholder="0011110000110011" onkeyup="updateAllOutput()">-->
 		<div id="plaintext-div">
 			<span class="heading">Word to be hidden:</span>
 			<textarea id="plaintext-input" type="text" placeholder="secret message"></textarea>
 		</div>
-		<!--<div id="pattern-div">
-			<span class="heading">Binary pattern:</span>
-			<textarea id="pattern-output" disabled="disabled" placeholder="ones and zeroes"></textarea>
-		</div>
-		<div id="ciphertext-div">
-			<span class="heading">Ciphertext:</span>
-			<textarea id="ciphertext-input" type="text" placeholder="ciphertext"></textarea>
-		</div>-->
 		<div id="io-div">
 			<div id="pattern-output"></div>
 			<div id="ciphertext-input" contenteditable="true"></div>
