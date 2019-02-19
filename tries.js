@@ -182,6 +182,7 @@ function getTrieSuggestions(patt, trie)
 	}
 }
 
+// thanks stack overflow
 function loadDocument(docName) {
 	var result = null;
 	var xhttp = new XMLHttpRequest();
@@ -192,10 +193,20 @@ function loadDocument(docName) {
 	}
 	return result;
 }
-// corpus is from here https://github.com/first20hours/google-10000-english
-// but hosted on Oberlin servers
-// because I don't want github to get mad at me
-let words = loadDocument("google-10000-english.txt").split("\n");
+let words;
+try {
+	// corpus is from here https://github.com/first20hours/google-10000-english
+	// but hosted on Oberlin servers
+	// because I don't want github to get mad at me
+	words = loadDocument("google-10000-english.txt").split("\n");
+}
+catch(error)
+{
+	// if we're here, we're probably testing locally!
+	// or the corpus stopped existing for some reason
+	// use a tiny local corpus
+	words = ['the', 'of', 'and', 'to', 'a', 'in', 'for', 'is', 'on', 'that', 'by', 'this', 'with', 'i', 'you', 'it', 'not', 'or', 'be', 'are', 'from', 'at', 'as', 'your', 'all', 'have', 'new', 'more', 'an', 'was', 'we', 'will', 'home', 'can', 'us', 'about', 'if', 'page', 'my', 'has', 'search', 'free', 'but', 'our', 'one', 'other', 'do', 'no', 'information', 'time', 'they', 'site', 'he', 'up', 'may', 'what', 'which', 'their', 'news', 'out', 'use', 'any', 'there', 'see', 'only', 'so', 'his', 'when', 'contact', 'here', 'business', 'who', 'web', 'also', 'now', 'help', 'get', 'pm', 'view', 'online', 'c', 'e', 'first', 'am', 'been', 'would', 'how', 'were', 'me', 's', 'services', 'some', 'these', 'click', 'its', 'like', 'service', 'x', 'than', 'find', 'price', 'date', 'back', 'top', 'people', 'had', 'list', 'name', 'just', 'over', 'state', 'year', 'day', 'into', 'email', 'two', 'health', 'n', 'world', 're', 'next', 'used', 'go', 'b', 'work', 'last', 'most', 'products', 'music', 'buy', 'data', 'make', 'them', 'should', 'product', 'system', 'post', 'her', 'city', 't', 'add', 'policy', 'number', 'such', 'please', 'available', 'copyright', 'support', 'message', 'after', 'best', 'software', 'then', 'jan', 'good', 'video', 'well', 'd', 'where', 'info', 'rights', 'public', 'books', 'high', 'school', 'through', 'm', 'each', 'links', 'she', 'review', 'years', 'order', 'very', 'privacy', 'book', 'items', 'company', 'r', 'read', 'group', 'sex', 'need', 'many', 'user', 'said', 'de', 'does', 'set', 'under', 'general', 'research', 'university', 'january', 'mail', 'full', 'map', 'reviews', 'program', 'life']
+}
 
 //start a corpus
 let trieCorpus = new TrieNode("", null, [], [], false);
