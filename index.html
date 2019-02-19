@@ -13,23 +13,26 @@
 			<button type="button" id="clear-button">Clear</button>
 		</div>
 		<div id="plaintext-div">
-			<span class="heading">Word to be hidden:</span>
+			<span class="heading">Type the word you'd like to hide:</span>
 			<textarea id="plaintext-input" type="text" placeholder="secret message"></textarea>
 		</div>
 		<div id="io-div">
+			Your secret word in binary is:
 			<div id="pattern-output"></div>
+			Type suggested words here:
 			<div id="ciphertext-input" contenteditable="true"></div>
 		</div>
 		<div id="status-output"></div>
 		<div id="mode-div">
+			Sort words by:
 			<select id="mode-input">
-				<option value="0" selected="selected">alphabetically</option>
+				<option value="0" selected="selected">alphabetical order</option>
 				<option value="1">longest first</option>
 				<option value="2">shortest first</option>
 			</select>
 		</div>
 		<div id="word-div">
-			<span class="heading">Available words:</span><table id="word-output"></table>
+			<span class="heading">Possibilities for the next word:</span><table id="word-output"></table>
 		</div>
 	</div>
 </body>
