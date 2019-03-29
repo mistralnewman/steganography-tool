@@ -162,24 +162,26 @@ function getSuggestions(curr, patt, corp)
 
 function getTrieSuggestions(patt, trie)
 {
-	if(trie.end)
-	{
-		return [trie.val];
-	}
+	// check if pattern is at an end
 	if(patt.length < 1)
 	{
+		// no options
 		return [];
 	}
-	else
+	// if not, start a list of options
+	let results = [];
+	// check if current node is an end
+	if(trie.end)
 	{
-		let results = [];
-		let side = patt.charAt(0) == "1" ? trie.ones : trie.zeroes;
-		for(let node of side)
-		{
-			results = results.concat(getTrieSuggestions(patt.substring(1), node));
-		}
-		return results.map(x => trie.val + x);
+		// add current node as an option
+		results = results.concat("");//trie.val);
+	} //this is broken and I don't know why
+	let side = patt.charAt(0) == "1" ? trie.ones : trie.zeroes;
+	for(let node of side)
+	{
+		results = results.concat(getTrieSuggestions(patt.substring(1), node));
 	}
+	return results.map(x => trie.val + x);
 }
 
 // thanks stack overflow
